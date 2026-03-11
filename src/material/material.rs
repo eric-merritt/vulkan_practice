@@ -1,7 +1,7 @@
 use crate::optical::color::RGBAColor;
 
 #[derive( Debug )]
-struct Material {
+pub struct Material {
   pub name: String,
   pub diffuse_color: RGBAColor,
   pub specular_color: RGBAColor,
