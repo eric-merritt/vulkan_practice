@@ -1,5 +1,4 @@
 pub mod matrices;
-pub mod vectors;
 pub mod quaternions;
 
 pub const PI: f32 = std::f32::consts::PI;

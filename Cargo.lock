@@ -3,5 +3,23 @@
 version = 4
 
 [[package]]
+name = "glam"
+version = "0.26.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bebe52f2c58f1eea4d6fd3307058cf818c74181435a3620502d1651db07ff018"
+dependencies = [
+ "mint",
+]
+
+[[package]]
+name = "mint"
+version = "0.5.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e53debba6bda7a793e5f99b8dacf19e626084f525f7829104ba9898f367d85ff"
+
+[[package]]
 name = "vulkan_practice"
 version = "0.1.0"
+dependencies = [
+ "glam",
+]

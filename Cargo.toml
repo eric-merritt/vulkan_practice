@@ -4,30 +4,30 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-# Vulkan bindings (low-level)
-ash = { version = "0.41", features = ["vk_khr_surface", "vk_khr_swapchain"] }
+# # Vulkan bindings (low-level)
+# # ash = { version = "0.41", features = ["vk_khr_surface", "vk_khr_swapchain"] }
 
-# Windowing & input
-winit = "0.29"
+# # Windowing & input
+# winit = "0.29"
 
 # Linear algebra for graphics (vectors, matrices, quaternions)
 glam = { version = "0.26", features = ["mint"] }
 
-# Image loading for textures
-image = "0.24"
+# # Image loading for textures
+# image = "0.24"
 
-# Shader compilation (GLSL → SPIR-V)
-shaderc = "0.7"
+# # Shader compilation (GLSL → SPIR-V)
+# shaderc = "0.7"
 
-# Safe memory casts, useful for vertex buffers
-bytemuck = "1.14"
+# # Safe memory casts, useful for vertex buffers
+# bytemuck = "1.14"
 
-# Optional: model loading (OBJ or glTF)
-tobj = "3.0"
-gltf = "0.22"
+# # Optional: model loading (OBJ or glTF)
+# tobj = "3.0"
+# gltf = "0.22"
 
-# Optional: GPU memory allocation helper
-gpu-allocator = "0.11"
+# # Optional: GPU memory allocation helper
+# gpu-allocator = "0.11"
 
-# Optional: debug GUI overlay
-imgui = "0.10"
+# # Optional: debug GUI overlay
+# imgui = "0.10"
