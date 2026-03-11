@@ -14,3 +14,9 @@ pub struct RGBAColor {
   b: f32,
   a: f32
 }
+
+impl RGBAColor {
+  pub fn new(r: f32, g: f32, b: f32, a: f32) -> Self {
+    RGBAColor { r, g, b, a }
+  }
+}
