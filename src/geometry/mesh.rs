@@ -15,10 +15,10 @@ impl Mesh {
     material_ids: Vec<usize>,
     materials: Vec<Material>
   ) -> Self {
-    Self { vertices, indices }
+    Self { vertices, indices, material_ids, materials }
   }
 
-  pub fn triangle_count( &self ) {
+  pub fn triangle_count( &self ) -> usize{
     self.indices.len() / 3
   }
 }
