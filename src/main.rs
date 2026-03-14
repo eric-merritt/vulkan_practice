@@ -2,11 +2,17 @@ mod geometry;
 mod physics;
 mod optical;
 mod material;
+mod engine;
 
 use physics::{Velocity, Acceleration, Force/* , Wave */ };
 use geometry::{Position, /*Mesh, Vertex,*/ Pixel};
-use optical::color::{ RGBAColor };
-use glam::Vec3;
+use optical::color::{ RGBAColor, RGBColor };
+use glam::{Vec3, Mat4};
+use optical::{Camera, Light, DirectionalLight};
+use material::{Material, /*Texture*/};
+use engine::{RenderEngine, /*Shader*/}; // Assuming Shader is defined in engine module
+use core::f32::consts;
+
 
 fn main() {
     println!("--- Testing Geometry ---");

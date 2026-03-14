@@ -6,9 +6,13 @@ edition = "2021"
 [dependencies]
 # Vulkan bindings (low-level)
 ash = "0.38"
+ash-window = "0.13.0"
 
 # Windowing & input
 winit = "0.30"
+
+# Logging
+log = "0.4"
 
 # Linear algebra for graphics (vectors, matrices, quaternions)
 glam = { version = "0.26", features = ["mint"] }
@@ -21,14 +25,14 @@ rapier3d-f64 = "0.32.0"
 # shaderc = "0.7"
 
 # # Safe memory casts, useful for vertex buffers
-# bytemuck = "1.14"
+bytemuck = "1.21"
 
 # # Optional: model loading (OBJ or glTF)
 # tobj = "3.0"
 # gltf = "0.22"
 
 # # Optional: GPU memory allocation helper
-# gpu-allocator = "0.11"
+gpu-allocator = "0.28"
 
 # # Optional: debug GUI overlay
 # imgui = "0.10"
