@@ -1,5 +1,10 @@
 use crate::optical::color::RGBColor;
 use glam::Vec3;
+use rapier3d_f64::prelude::Cone;
+use crate::geometry::position::Position;
+
+
+
 
 #[repr( C )]
 #[derive( Clone, Copy, Debug )]
@@ -7,7 +12,6 @@ pub struct Light {
   pub intensity: f32,
   pub color: RGBColor,
 }
-
 #[repr(C)]
 #[derive(Debug, Clone, Copy)]
 pub struct DirectionalLight {
@@ -19,6 +23,31 @@ pub struct DirectionalLight {
   pub shininess: f32, // Shininess factor for specular highlights
 }
 
+#[repr(C)]
+#[derive(Debug, Clone, Copy)]
+pub struct AmbientLight {
+  pub intensity: f32,
+  pub color: RGBColor,
+}
+#[repr(C)]
+#[derive(Debug, Clone, Copy)]
+pub struct SpotLight {
+  pub position: Position,
+  pub intensity: f32,
+  pub color: RGBColor,
+  pub inner_cone: Cone,
+  pub outer_cone: Cone,
+  pub falloff_rate: f32,
+  pub diffuse_coefficient: f32,
+  pub specular_coefficient: f32,
+  pub shininess: f32,
+  pub attenuation_coefficient: f32,
+  pub attenuation_constant: f32,
+  pub attenuation_linear: f32,
+  pub attenuation_quadratic: f32,
+  pub attenuation_exponential: f32,
+  pub angle_of_incidence: f32,
+}
 #[repr(C)]
 #[derive(Debug, Clone, Copy)]
 pub struct PointLight {

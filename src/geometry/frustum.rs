@@ -1,4 +1,4 @@
-use glam::Vec4;
+use glam::{Vec3, Mat4};
 use crate::geometry::plane::Plane;
 
 #[repr(C)]
@@ -10,7 +10,7 @@ pub struct Frustum {
 
 impl Frustum {
   
-  pub fn from_view_projection(&self, vp: Mat4) -> Self {
+  pub fn from_view_projection(vp: Mat4) -> Self {
     let cols = vp.to_cols_array_2d();
     let row1 = (cols[0][0], cols[1][0], cols[2][0], cols[3][0]);
     let row2 = (cols[0][1], cols[1][1], cols[2][1], cols[3][1]);
@@ -32,11 +32,66 @@ impl Frustum {
     for plane in self.planes.iter() {
       if plane.signed_distance(point) < 0.0 {
         return false;
-      } else {
-        true
       }
     }
+    true
   }
-  
+}
 
+#[cfg(test)]
+mod tests {
+  use super::*;
+  use std::f32::consts::FRAC_PI_4;
+
+  fn test_vp() -> Mat4 {
+    let view = Mat4::look_at_rh(
+      Vec3::new(0.0, 0.0, 5.0),
+      Vec3::ZERO,
+      Vec3::Y,
+    );
+    let proj = Mat4::perspective_rh(FRAC_PI_4, 1.0, 0.1, 100.0);
+    proj * view
   }
+
+  #[test]
+  fn origin_is_inside() {
+    let frustum = Frustum::from_view_projection(test_vp());
+    assert!(frustum.contains_point(Vec3::ZERO));
+  }
+
+  #[test]
+  fn point_in_front_of_camera_is_inside() {
+    let frustum = Frustum::from_view_projection(test_vp());
+    assert!(frustum.contains_point(Vec3::new(0.0, 0.0, -1.0)));
+  }
+
+  #[test]
+  fn point_behind_camera_is_outside() {
+    let frustum = Frustum::from_view_projection(test_vp());
+    assert!(!frustum.contains_point(Vec3::new(0.0, 0.0, 10.0)));
+  }
+
+  #[test]
+  fn point_far_left_is_outside() {
+    let frustum = Frustum::from_view_projection(test_vp());
+    assert!(!frustum.contains_point(Vec3::new(-1000.0, 0.0, 0.0)));
+  }
+
+  #[test]
+  fn point_far_right_is_outside() {
+    let frustum = Frustum::from_view_projection(test_vp());
+    assert!(!frustum.contains_point(Vec3::new(1000.0, 0.0, 0.0)));
+  }
+
+  #[test]
+  fn point_far_above_is_outside() {
+    let frustum = Frustum::from_view_projection(test_vp());
+    assert!(!frustum.contains_point(Vec3::new(0.0, 1000.0, 0.0)));
+  }
+
+  #[test]
+  fn point_beyond_far_plane_is_outside() {
+    let frustum = Frustum::from_view_projection(test_vp());
+    assert!(!frustum.contains_point(Vec3::new(0.0, 0.0, -200.0)));
+  }
+}
